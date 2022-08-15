@@ -4,6 +4,19 @@ spring:
   main:
     allow-circular-references: true
 
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: www.kfyty.com
+      initial-size: 5
+      min-idle: 5
+      max-active: 100
+      keep-alive: true
+      min-evictable-idle-time-millis: 28740000
+      max-evictable-idle-time-millis: 28800000
+
   cloud:
     nacos:
       config:

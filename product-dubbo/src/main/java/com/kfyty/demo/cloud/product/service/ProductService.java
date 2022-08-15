@@ -8,5 +8,5 @@ package com.kfyty.demo.cloud.product.service;
  * @email kfyty725@hotmail.com
  */
 public interface ProductService {
-    String test(String name);
+    void updateProduct(Long userId, Integer productCnt);
 }

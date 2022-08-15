@@ -1,7 +1,7 @@
 package com.kfyty.demo.cloud.consumer;
 
-import com.kfyty.demo.cloud.product.service.ProductService;
-import org.apache.dubbo.config.annotation.DubboReference;
+import com.kfyty.demo.cloud.consumer.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ConsumerApplication {
-    @DubboReference
-    private ProductService productService;
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("consumer/test")
-    public String test(String name) {
-        return this.productService.test(name);
+    @GetMapping("consumer/user/save")
+    public String saveUser(String name, Integer cnt) {
+        this.userService.update(name, cnt);
+        return "ok";
     }
 
     public static void main(String[] args) {

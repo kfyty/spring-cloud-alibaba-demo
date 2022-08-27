@@ -1,6 +1,7 @@
 package com.kfyty.demo.cloud.consumer;
 
 import com.kfyty.demo.cloud.consumer.service.UserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,12 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class ConsumerApplication {
     @Autowired
+    private ConsumerApplication __this;
+
+    @Autowired
     private UserService userService;
 
     @GetMapping("consumer/user/save")
-    public String saveUser(String name, Integer cnt) {
-        this.userService.update(name, cnt);
+    public String saveUser(String name, Long id) {
+        this.__this.update(name, id);
         return "ok";
+    }
+
+    @GlobalTransactional
+    public void update(String name, Long id) {
+        this.userService.update(name, id);
     }
 
     public static void main(String[] args) {

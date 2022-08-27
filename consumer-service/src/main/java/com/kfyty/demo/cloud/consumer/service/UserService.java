@@ -2,7 +2,7 @@ package com.kfyty.demo.cloud.consumer.service;
 
 import com.kfyty.demo.cloud.consumer.mapper.UserMapper;
 import com.kfyty.demo.cloud.product.service.ProductService;
-import com.kfyty.demo.cloud.product.service.model.UserDO;
+import com.kfyty.demo.cloud.consumer.model.UserDO;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,12 @@ public class UserService {
     private ProductService productService;
 
     @Transactional
-    public void update(String name, Integer productCnt) {
-        UserDO userDO = new UserDO(null, name, 0);
+    public void update(String name, Long productId) {
+        UserDO userDO = new UserDO(null, name);
         this.userMapper.insert(userDO);
-        this.productService.updateProduct(userDO.getId(), productCnt);
+        this.productService.updateProduct(productId);
+        if (name.equals("error")) {
+            throw new RuntimeException("dev test");
+        }
     }
 }

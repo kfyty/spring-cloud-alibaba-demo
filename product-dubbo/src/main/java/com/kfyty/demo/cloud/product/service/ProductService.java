@@ -8,5 +8,5 @@ package com.kfyty.demo.cloud.product.service;
  * @email kfyty725@hotmail.com
  */
 public interface ProductService {
-    void updateProduct(Long userId, Integer productCnt);
+    void updateProduct(Long productId);
 }

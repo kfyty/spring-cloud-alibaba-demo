@@ -1,6 +1,6 @@
 package com.kfyty.demo.cloud.consumer.mapper;
 
-import com.kfyty.demo.cloud.product.service.model.UserDO;
+import com.kfyty.demo.cloud.consumer.model.UserDO;
 import com.kfyty.mybatis.auto.mapper.BaseMapper;
 import com.kfyty.mybatis.auto.mapper.annotation.AutoMapper;
 import com.kfyty.mybatis.auto.mapper.annotation.SelectKey;

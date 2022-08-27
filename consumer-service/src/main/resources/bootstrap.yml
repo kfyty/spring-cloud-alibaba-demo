@@ -32,6 +32,20 @@ spring:
         server-addr: ${spring.cloud.nacos.config.server-addr}
         namespace: ${spring.cloud.nacos.config.namespace}
 
+seata:
+  tx-service-group: seata-tx-group                          # 事务分组名
+  service:
+    vgroup-mapping:
+      seata-tx-group: seata-cluster                         # 分组 -> 集群的映射
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server                             # 需与 seata 服务名称一致
+      server-addr: 127.0.0.1:8848                           # 需与 seata server register 一致
+      namespace: 83cdc26f-c7ce-4872-a2f3-3bdb034d1dad       # 需与 seata server register 一致
+      group : DEFAULT_GROUP                                 # 需与 seata server register 一致
+      cluster: seata-cluster                                # 需与 seata server register 一致
+
 dubbo:
   application:
     name: ${spring.application.name}

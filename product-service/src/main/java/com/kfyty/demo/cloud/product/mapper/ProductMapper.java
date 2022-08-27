@@ -1,6 +1,6 @@
 package com.kfyty.demo.cloud.product.mapper;
 
-import com.kfyty.demo.cloud.product.service.model.UserDO;
+import com.kfyty.demo.cloud.product.service.model.ProductDO;
 import com.kfyty.mybatis.auto.mapper.BaseMapper;
 import com.kfyty.mybatis.auto.mapper.annotation.AutoMapper;
 import com.kfyty.mybatis.auto.mapper.annotation.SelectKey;
@@ -16,6 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 @SelectKey
 @AutoMapper(suffix = "DO")
-public interface UserMapper extends BaseMapper<Long, UserDO> {
+public interface ProductMapper extends BaseMapper<Long, ProductDO> {
 
 }

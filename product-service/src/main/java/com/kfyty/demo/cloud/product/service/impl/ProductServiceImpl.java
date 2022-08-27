@@ -1,9 +1,9 @@
 package com.kfyty.demo.cloud.product.service.impl;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.kfyty.demo.cloud.product.mapper.UserMapper;
+import com.kfyty.demo.cloud.product.mapper.ProductMapper;
 import com.kfyty.demo.cloud.product.service.ProductService;
-import com.kfyty.demo.cloud.product.service.model.UserDO;
+import com.kfyty.demo.cloud.product.service.model.ProductDO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 @DubboService
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    private UserMapper userMapper;
+    private ProductMapper productMapper;
 
     @Override
     @Transactional
     @SentinelResource("updateProduct")
-    public void updateProduct(Long userId, Integer productCnt) {
-        UserDO userDO = new UserDO(userId, null, productCnt);
-        this.userMapper.update(userDO);
+    public void updateProduct(Long productId) {
+        ProductDO productDO = this.productMapper.findByPk(productId);
+        productDO.setStock(productDO.getStock() - 1);
+        this.productMapper.update(productDO);
     }
 }
